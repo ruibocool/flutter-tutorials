@@ -5,6 +5,8 @@ import 'package:provider_arc/core/viewmodels/views/login_view_model.dart';
 import 'package:provider_arc/ui/shared/app_colors.dart';
 import 'package:provider_arc/ui/widgets/login_header.dart';
 
+import '../../core/services/api.dart';
+import '../../core/services/authentication_service.dart';
 import 'base_widget.dart';
 
 class LoginView extends StatefulWidget {
@@ -17,8 +19,8 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-    return BaseWidget<LoginViewModel>(
-      model: LoginViewModel(authenticationService: Provider.of(context)),
+    return BaseWidget<AuthenticationService>(
+      model: Provider.of<AuthenticationService>(context),
       child: LoginHeader(controller: _controller),
       builder: (context, model, child) => Scaffold(
           backgroundColor: backgroundColor,
@@ -35,7 +37,7 @@ class _LoginViewState extends State<LoginView> {
                         style: TextStyle(color: Colors.black),
                       ),
                       onPressed: () async {
-                        var loginSuccess = await model.login(_controller.text);
+                        var loginSuccess = await model.login(int.tryParse(_controller.text));
                         if (loginSuccess) {
                           Navigator.pushNamed(context, RoutePaths.Home);
                         }

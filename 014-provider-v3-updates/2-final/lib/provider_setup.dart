@@ -5,7 +5,7 @@ import 'core/models/user.dart';
 import 'core/services/api.dart';
 
 List<SingleChildCloneableWidget> providers = [
-  ...independentServices,
+  //...independentServices,
   ...dependentServices,
   ...uiConsumableProviders
 ];
@@ -15,14 +15,16 @@ List<SingleChildCloneableWidget> independentServices = [
 ];
 
 List<SingleChildCloneableWidget> dependentServices = [
-  ProxyProvider<Api, AuthenticationService>(
+  /*ProxyProvider<Api, AuthenticationService>(
     builder: (context, api, authenticationService) =>
         AuthenticationService(api: api),
-  )
+  ),*/
+  ChangeNotifierProvider.value(value: AuthenticationService(api: Api.getInstance()))
 ];
 
 List<SingleChildCloneableWidget> uiConsumableProviders = [
   StreamProvider<User>(
     builder: (context) => Provider.of<AuthenticationService>(context, listen: false).user,
+    initialData: User(),
   )
 ];

@@ -6,14 +6,16 @@ import 'package:provider_arc/core/viewmodels/widgets/posts_model.dart';
 import 'package:provider_arc/ui/views/base_widget.dart';
 import 'package:provider_arc/ui/widgets/postlist_item.dart';
 
+import '../../core/services/api.dart';
+
 class Posts extends StatelessWidget {
   const Posts({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BaseWidget<PostsModel>(
-        model: PostsModel(api: Provider.of(context)),
-        onModelReady: (model) => model.getPosts(Provider.of<User>(context).id),
+        model: PostsModel(api:Api.getInstance()),
+        onModelReady: (model) => model.getPosts(Provider.of<User>(context).getId()),
         builder: (context, model, child) => model.busy
             ? Center(
                 child: CircularProgressIndicator(),

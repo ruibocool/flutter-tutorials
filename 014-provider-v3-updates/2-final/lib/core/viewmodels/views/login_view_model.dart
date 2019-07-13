@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/widgets.dart';
 import 'package:provider_arc/core/services/authentication_service.dart';
 import 'package:provider_arc/core/viewmodels/base_model.dart';
@@ -17,3 +18,4 @@ class LoginViewModel extends BaseModel {
     return success;
   }
 }
+*/

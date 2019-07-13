@@ -4,6 +4,18 @@ class User {
   String username;
   User({this.id, this.name, this.username});
 
+  int getId(){
+    return  id??0;
+  }
+
+  String getName(){
+    return name??"";
+  }
+
+  String getUsername(){
+    return username??"";
+  }
+
   User.initial()
       : id = 0,
         name = '',

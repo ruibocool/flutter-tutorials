@@ -23,7 +23,7 @@ class PostView extends StatelessWidget {
             UIHelper.verticalSpaceLarge,
             Text(post.title, style: headerStyle),
             Text(
-              'by ${Provider.of<User>(context).name}',
+              'by ${Provider.of<User>(context).getName()}',
               style: TextStyle(fontSize: 9.0),
             ),
             UIHelper.verticalSpaceMedium,

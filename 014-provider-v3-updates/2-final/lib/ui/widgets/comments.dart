@@ -6,6 +6,8 @@ import 'package:provider_arc/ui/shared/app_colors.dart';
 import 'package:provider_arc/ui/shared/ui_helpers.dart';
 import 'package:provider_arc/ui/views/base_widget.dart';
 
+import '../../core/services/api.dart';
+
 class Comments extends StatelessWidget {
   final int postId;
   Comments(this.postId);
@@ -13,8 +15,8 @@ class Comments extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseWidget<CommentsModel>(
+        model: CommentsModel(api:Api.getInstance()),
         onModelReady: (model) => model.fetchComments(postId),
-        model: CommentsModel(api: Provider.of(context)),
         builder: (context, model, child) => model.busy
             ? Center(
                 child: CircularProgressIndicator(),
